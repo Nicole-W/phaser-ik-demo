@@ -1,10 +1,10 @@
 import './arm.js';
 var config = {
     type: Phaser.AUTO,
-    width: ~~(window.innerWidth * 0.5),
-    height: ~~(window.innerHeight * 0.5),
+    width: Math.ceil(window.innerWidth * 0.25),
+    height: Math.ceil(window.innerHeight * 0.25),
     pixelArt: true,
-    zoom: 2,
+    zoom: 4,
     physics: {
         default: 'arcade',
         arcade: {
@@ -19,15 +19,15 @@ var config = {
 };
 
 function preload() {
-    this.load.image('smiley', 'smiley.png');
-    this.load.image('upperarm', 'upperarm.png');
-    this.load.image('forearm', 'forearm.png');
+    this.load.image('smiley', 'asset/smiley.png');
+    this.load.image('upperarm', 'asset/upperarm.png');
+    this.load.image('forearm', 'asset/forearm.png');
 }
 
 let smiley;
 let arms = [];
 var game = new Phaser.Game(config);
-
+window.game = game;
 function create() {
     this.cameras.main.backgroundColor = new Phaser.Display.Color(127, 127, 127)
 
