@@ -51,8 +51,15 @@ function create() {
 function update() {
     smiley.rotation += 0.01;
 
-    smiley.x = game.input.mousePointer.x;
-    smiley.y = game.input.mousePointer.y;
+    let pointer;
+    if (game.device.input.touch) {
+        pointer = game.input.pointers[1];
+    } else {
+        pointer = game.input.mousePointer;
+    }
+
+    smiley.x = pointer.x;
+    smiley.y = pointer.y;
 
     let centerX = this.cameras.main.centerX;
     let centerY = this.cameras.main.centerY;

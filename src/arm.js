@@ -19,12 +19,16 @@ class Arm extends Phaser.GameObjects.Container {
 
     preUpdate() {
         let game = this.scene.game;
+        let pointer;
 
-        this.forearm.rotation += 0.01;
-        this.rotation += 0.01;
+        if (game.device.input.touch) {
+            pointer = game.input.pointers[1];
+        } else {
+            pointer = game.input.mousePointer;
+        }
 
-        let distance = Phaser.Math.Distance.Between(this.x, this.y, game.input.mousePointer.x, game.input.mousePointer.y);
-        let angle = Phaser.Math.Angle.Between(this.x, this.y, game.input.mousePointer.x, game.input.mousePointer.y)
+        let distance = Phaser.Math.Distance.Between(this.x, this.y, pointer.x, pointer.y);
+        let angle = Phaser.Math.Angle.Between(this.x, this.y, pointer.x, pointer.y)
 
         distance = Math.min(distance, armLength);
 
