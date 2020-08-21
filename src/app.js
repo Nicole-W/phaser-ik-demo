@@ -27,7 +27,7 @@ function preload() {
 let smiley;
 let arms = [];
 var game = new Phaser.Game(config);
-window.game = game;
+
 function create() {
     this.cameras.main.backgroundColor = new Phaser.Display.Color(127, 127, 127)
 
@@ -51,15 +51,8 @@ function create() {
 function update() {
     smiley.rotation += 0.01;
 
-    let pointer;
-    if (game.device.input.touch) {
-        pointer = game.input.pointers[1];
-    } else {
-        pointer = game.input.mousePointer;
-    }
-
-    smiley.x = pointer.x;
-    smiley.y = pointer.y;
+    smiley.x = game.input.activePointer.x;
+    smiley.y = game.input.activePointer.y;
 
     let centerX = this.cameras.main.centerX;
     let centerY = this.cameras.main.centerY;
